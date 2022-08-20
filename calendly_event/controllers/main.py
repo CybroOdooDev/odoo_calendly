@@ -70,4 +70,9 @@ class WebHook(http.Controller):
                     'attendee_ids': [[6, 0, attendee_ids]],
                     'partner_ids': [[6, 0, partner_ids]]
                 })
-
+        if request.jsonrequest.get('event') == 'invitee.canceled':
+            event = request.jsonrequest.get('payload').get('event')
+            search_event = request.env['calendar.event'].sudo().search(
+                [('calendly_id', '=', event.get('uuid'))], limit=1)
+            if search_event:
+                search_event.unlink()
