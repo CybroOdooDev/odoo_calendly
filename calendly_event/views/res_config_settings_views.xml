@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.add.calendly</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='contacts_settings']" position="inside">
+                <div id="calendly">
+                    <div class='row mt16 o_settings_container iap_portal' name="calendly_setting_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="calendly_setting">
+                            <div class="o_setting_left_pane">
+                                <field name="set_calendly"/>
+                            </div>
+                            <div class='o_setting_right_pane'>
+                                <label for="set_calendly"/>
+                                <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                                <div class="text-muted">
+                                    Integrate Calendly events with your meetings
+                                </div>
+                                <div class="content-group"  attrs="{'invisible': [('set_calendly','=',False)]}">
+                                    <div class="mt16">
+                                        <span class="col-lg-3">API Key: <field name="api_key" attrs="{'required': [('set_calendly', '=', True)]}"/></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
